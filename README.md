@@ -13,8 +13,9 @@ PHP5, CURL extension.
 How to use:
 =================
 
-	Go to [Getting_started](http://xmlsoccer.wikia.com/wiki/Getting_started) and receive API key.
-	Include the XMLSoccer.php file, and call one of available methods.
+Go to [Getting_started](http://xmlsoccer.wikia.com/wiki/Getting_started) and receive API key.
+
+Include the XMLSoccer.php file, and call one of available methods.
 	
 
 Methods Available
