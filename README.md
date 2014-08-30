@@ -23,8 +23,7 @@ Methods Available
 
 Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info.
   
-h3. Currently available methods:
-
+Currently available methods:
 
 	CheckApiKey()
 	GetAllGroupsByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
