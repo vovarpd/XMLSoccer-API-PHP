@@ -68,8 +68,8 @@ List players for team with id 49
 			echo "<b>".$value->Name."</b> ".$value->Position."<br>";
 		}
 	}
-	catch(Exception $e){
-		echo "Exception: ".$e->getMessage();
+	catch(XMLSoccerException $e){
+		echo "XMLSoccerException: ".$e->getMessage();
 	}
 
 
@@ -82,8 +82,8 @@ If you server has multiple IP available you can set any IP for request:
 		$result=$soccer->GetLeagueStandingsBySeason(array("league"=>3,"seasonDateString"=>"1314"));
 		var_dump($result);
 	}
-	catch(Exception $e){
-		echo "Exception: ".$e->getMessage();
+	catch(XMLSoccerException $e){
+		echo "XMLSoccerException: ".$e->getMessage();
 	}
 
 If you have try a free demo feed, use some like this:
@@ -95,9 +95,10 @@ If you have try a free demo feed, use some like this:
 		$result=$soccer->GetAllTeams();
 		var_dump($result);
 	}
-	catch(Exception $e){
-		echo "Exception: ".$e->getMessage();
+	catch(XMLSoccerException $e){
+		echo "XMLSoccerException: ".$e->getMessage();
 	}
+
 
 
 That's all!
