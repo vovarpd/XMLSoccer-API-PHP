@@ -21,8 +21,6 @@ Include the XMLSoccer.php file, and call one of available methods.
 Methods Available
 -------------------
 
-Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info.
-  
 Currently available methods:
 
 	CheckApiKey()
@@ -52,6 +50,8 @@ Currently available methods:
 	GetPlayersByTeam(array("teamId"=>""))
 	GetTeam(array("team_name"=>"")))
 	GetTopScorersByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
+
+Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info.
 
 
 Examples:
