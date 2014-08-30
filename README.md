@@ -2,6 +2,7 @@ XMLSoccer-API-PHP
 =================
 
 PHP wrapper for [XMLSoccer](http://XMLSoccer.com) API
+
 Full API Documentation here: [http://xmlsoccer.wikia.com/wiki/API_Documentation](http://xmlsoccer.wikia.com/wiki/API_Documentation)
 
 Requirements:
