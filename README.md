@@ -20,8 +20,12 @@ Include the XMLSoccer.php file, and call one of available methods.
 
 Methods Available
 -------------------
-  Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info.
+
+Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info.
   
+h3. Currently available methods:
+
+
 	CheckApiKey()
 	GetAllGroupsByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
 	GetAllLeagues()
