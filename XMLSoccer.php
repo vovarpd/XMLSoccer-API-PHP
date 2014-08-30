@@ -30,10 +30,6 @@ class XMLSoccer{
 		if(empty($this->api_key)) throw new XMLSoccerException("api_key cannot be empty. Please setup.");
 	}
 
-
-	/*
-		list available methods with params.
-	*/
 	public function __call($name,$params){
 		if(!in_array($name,$this->availableMethods)) throw new XMLSoccerException("Unsupported method: ".$name);
 		$data=$this->request($this->buildUrl($name,$params));
@@ -54,7 +50,6 @@ class XMLSoccer{
 		return $xml;
 	}
 
-
 	protected function buildUrl($method,$params){
 		$url=$this->service_url."/".$method."?apikey=".$this->api_key;
 		for($i=0;$i<count($params);$i++){
@@ -70,7 +65,6 @@ class XMLSoccer{
 		return $url;
 	}
 
-
 	protected function request($url){
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
@@ -83,9 +77,7 @@ class XMLSoccer{
 		$cerrno=curl_errno($curl);
 		$http_code=curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
-
 		if($cerrno!=0) throw new XMSoccerException($cerror,E_USER_WARNING);
-
 		if($http_code == 200 ) return $data;
 		throw new XMLSoccerException($http_code .' - '. $data . "\nURL: " . $url);
 	}
