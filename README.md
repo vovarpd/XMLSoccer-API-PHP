@@ -21,7 +21,7 @@ Include the XMLSoccer.php file, and call one of available methods.
 Methods Available
 -------------------
 
-Currently available methods:
+Check here [Input data formats](http://xmlsoccer.wikia.com/wiki/Input_data_formats)
 
 	CheckApiKey()
 	GetAllGroupsByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
