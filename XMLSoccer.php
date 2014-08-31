@@ -11,8 +11,7 @@
 
 class XMLSoccer{
 	protected $service_url="http://www.xmlsoccer.com/FootballData.asmx";
-	protected $api_key,$server_ip;
-	protected $availableMethods=array("CheckApiKey","GetAllGroupsByLeagueAndSeason","GetAllLeagues","GetAllTeams","GetAllTeamsByLeagueAndSeason","GetCupStandingsByGroupId","GetEarliestMatchDatePerLeague","GetFixturesByDateInterval","GetFixturesByDateIntervalAndLeague","GetFixturesByDateIntervalAndTeam","GetFixturesByLeagueAndSeason","GetHistoricMatchesByFixtureMatchID","GetHistoricMatchesByID","GetHistoricMatchesByLeagueAndDateInterval","GetHistoricMatchesByLeagueAndSeason","GetHistoricMatchesByTeamAndDateInterval","GetHistoricMatchesByTeamsAndDateInterval","GetLeagueStandingsBySeason","GetLiveScore","GetLiveScoreByLeague","GetNextMatchOddsByLeague","GetOddsByFixtureMatchId","GetOddsByFixtureMatchId2","GetPlayerById","GetPlayersByTeam","GetTeam","GetTopScorersByLeagueAndSeason");
+	protected $api_key,$request_ip;
 
 	const TIMEOUT_GetLiveScore=25;
 	const TIMEOUT_GetLiveScoreByLeague=25;
@@ -24,14 +23,17 @@ class XMLSoccer{
 	const TIMEOUT_CURL=30;
 
 	public function __construct($api_key=""){
-		$this->server_ip=gethostbyname(gethostname());
+		$this->request_ip=gethostbyname(gethostname());
 		if(empty($this->service_url)) throw new XMLSoccerException("service_url cannot be empty. Please setup");
 		if(!empty($api_key)) $this->api_key=$api_key;
 		if(empty($this->api_key)) throw new XMLSoccerException("api_key cannot be empty. Please setup.");
 	}
 
+
+	/*
+		list available methods with params.
+	*/
 	public function __call($name,$params){
-		if(!in_array($name,$this->availableMethods)) throw new XMLSoccerException("Unsupported method: ".$name);
 		$data=$this->request($this->buildUrl($name,$params));
 		if(false===($xml = simplexml_load_string($data))) throw new XMLSoccerException("Invalid XML");
 		if(strstr($xml[0],"To avoid misuse of the service")){
@@ -50,6 +52,7 @@ class XMLSoccer{
 		return $xml;
 	}
 
+
 	protected function buildUrl($method,$params){
 		$url=$this->service_url."/".$method."?apikey=".$this->api_key;
 		for($i=0;$i<count($params);$i++){
@@ -65,26 +68,29 @@ class XMLSoccer{
 		return $url;
 	}
 
+
 	protected function request($url){
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_URL, $url);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($curl, CURLOPT_TIMEOUT, self::TIMEOUT_CURL);
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, self::TIMEOUT_CURL);
-		curl_setopt($curl, CURLOPT_INTERFACE,$this->server_ip);
+		curl_setopt($curl, CURLOPT_INTERFACE,$this->request_ip);
 		$data = curl_exec($curl);
 		$cerror=curl_error($curl);
 		$cerrno=curl_errno($curl);
 		$http_code=curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
+
 		if($cerrno!=0) throw new XMSoccerException($cerror,E_USER_WARNING);
+
 		if($http_code == 200 ) return $data;
 		throw new XMLSoccerException($http_code .' - '. $data . "\nURL: " . $url);
 	}
 
-	public function setServerIp($ip){
+	public function setRequestIp($ip){
 		if(empty($ip)) throw new XMLSoccerException("IP parameter cannot be empty",E_USER_WARNING);
-		$this->server_ip=$ip;
+		$this->request_ip=$ip;
 	}
 
 	public function setServiceUrl($service_url){
