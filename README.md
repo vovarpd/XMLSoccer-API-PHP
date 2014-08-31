@@ -8,7 +8,7 @@ Full API Documentation here: [http://xmlsoccer.wikia.com/wiki/API_Documentation]
 Requirements:
 =================
 
-PHP5, CURL extension.
+PHP5 with CURL, SimpleXML extensions.
 
 How to use:
 =================
