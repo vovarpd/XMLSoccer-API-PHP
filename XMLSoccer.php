@@ -1,6 +1,6 @@
 <?php
 /**
-* XMLSoccer.com API PHP Class
+* XMLSoccer.com API PHP Client Class
 *
 * @see http://xmlsoccer.wikia.com/wiki/API_Documentation
 * @see http://promo.lviv.ua
