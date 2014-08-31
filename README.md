@@ -48,7 +48,7 @@ Check here [Input data formats](http://xmlsoccer.wikia.com/wiki/Input_data_forma
 	GetOddsByFixtureMatchId2(array("fixtureMatch_Id"=>""))
 	GetPlayerById(array("playerId"=>""))
 	GetPlayersByTeam(array("teamId"=>""))
-	GetTeam(array("team_name"=>"")))
+	GetTeam(array("teamName"=>"")))
 	GetTopScorersByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
 
 Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info.
