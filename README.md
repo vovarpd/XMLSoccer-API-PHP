@@ -21,38 +21,9 @@ Include the XMLSoccer.php file, and call one of available methods.
 Methods Available
 -------------------
 
-Check here [Input data formats](http://xmlsoccer.wikia.com/wiki/Input_data_formats)
+Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info about methods and parameters.
 
-	CheckApiKey()
-	GetAllGroupsByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
-	GetAllLeagues()
-	GetAllTeams()
-	GetAllTeamsByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
-	GetCupStandingsByGroupId(array("group_id"=>""))
-	GetEarliestMatchDatePerLeague(array("league"=>""))
-	GetFixturesByDateInterval(array("startDateString"=>"","endDateString"=>""))
-	GetFixturesByDateIntervalAndLeague(array("league"=>"","startDateString"=>"","endDateString"=>""))
-	GetFixturesByDateIntervalAndTeam(array("teamId"=>"","startDateString"=>"","endDateString"=>""))
-	GetFixturesByLeagueAndSeason$arr(array("league"=>"","seasonDateString"=>"1415"));
-	GetHistoricMatchesByFixtureMatchID(array("Id"=>""))
-	GetHistoricMatchesByID(array("Id"=>""))
-	GetHistoricMatchesByLeagueAndDateInterval(array("league"=>"","startDateString"=>"","endDateString"=>""))
-	GetHistoricMatchesByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
-	GetHistoricMatchesByTeamAndDateInterval(array("teamId"=>"","startDateString"=>"","endDateString"=>""))
-	GetHistoricMatchesByTeamsAndDateInterval(array("team1Id"=>"","team2Id"=>"","startDateString"=>"","endDateString"=>""))
-	GetLeagueStandingsBySeason(array("league"=>"","seasonDateString"=>""))
-	GetLiveScore()
-	GetLiveScoreByLeague(array("league"=>""))
-	GetNextMatchOddsByLeague(array("league"=>""))
-	GetOddsByFixtureMatchId(array("fixtureMatch_Id"=>""))
-	GetOddsByFixtureMatchId2(array("fixtureMatch_Id"=>""))
-	GetPlayerById(array("playerId"=>""))
-	GetPlayersByTeam(array("teamId"=>""))
-	GetTeam(array("teamName"=>"")))
-	GetTopScorersByLeagueAndSeason(array("league"=>"","seasonDateString"=>""))
-
-Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info.
-
+[Input data formats](http://xmlsoccer.wikia.com/wiki/Input_data_formats)
 
 Examples:
 ==================
@@ -78,7 +49,7 @@ If you server has multiple IP available you can set any IP for request:
 	include("XMLSoccer.php");
 	try{
 		$soccer=new XMLSoccer("your_api_key");
-		$soccer->setServerIp("ip_for_request");
+		$soccer->setRequestIp("ip_for_request");
 		$result=$soccer->GetLeagueStandingsBySeason(array("league"=>3,"seasonDateString"=>"1314"));
 		var_dump($result);
 	}
@@ -92,7 +63,7 @@ If you have try a free demo feed, use some like this:
 	try{
 		$soccer=new XMLSoccer("your_api_key");
 		$soccer->setServiceUrl("http://www.xmlsoccer.com/FootballDataDemo.asmx");
-		$result=$soccer->GetAllTeams();
+		$fixtures=$soccer->GetFixturesByDateIntervalAndLeague(array("league"=>3,"startDateString"=>"2014-08-01 00:00","endDateString"=>"2014-09-30 00:00"));
 		var_dump($result);
 	}
 	catch(XMLSoccerException $e){
