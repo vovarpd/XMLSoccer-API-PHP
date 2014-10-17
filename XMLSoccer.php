@@ -82,7 +82,7 @@ class XMLSoccer{
 		$http_code=curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 
-		if($cerrno!=0) throw new XMSoccerException($cerror,E_USER_WARNING);
+		if($cerrno!=0) throw new XMLSoccerException($cerror,E_USER_WARNING);
 
 		if($http_code == 200 ) return $data;
 		throw new XMLSoccerException($http_code .' - '. $data . "\nURL: " . $url);
