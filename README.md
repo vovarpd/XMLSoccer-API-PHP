@@ -1,4 +1,4 @@
-XMLSoccer-API-PHP
+Yii2-xmlsoccer-client
 =================
 
 Yii2 client for [XMLSoccer](http://XMLSoccer.com) API
