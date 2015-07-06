@@ -5,11 +5,14 @@
 * @see http://xmlsoccer.wikia.com/wiki/API_Documentation
 * @see http://promo.lviv.ua
 * @author Volodymyr Chukh <vova@promo.lviv.ua>
+* @author Andre Schuurman <andre.schuurman@gmail.com>
 * @copyright 2014 Volodymyr Chukh
 * @license MIT License
 */
 
-class XMLSoccer{
+namespace drsdre\soapclient;
+
+class XMLSoccer {
 	protected $service_url="http://www.xmlsoccer.com/FootballData.asmx";
 	protected $api_key,$request_ip;
 
@@ -24,9 +27,9 @@ class XMLSoccer{
 
 	public function __construct($api_key=""){
 		$this->request_ip=gethostbyname(gethostname());
-		if(empty($this->service_url)) throw new XMLSoccerException("service_url cannot be empty. Please setup");
+		if(empty($this->service_url)) throw new Exception("service_url cannot be empty. Please setup");
 		if(!empty($api_key)) $this->api_key=$api_key;
-		if(empty($this->api_key)) throw new XMLSoccerException("api_key cannot be empty. Please setup.");
+		if(empty($this->api_key)) throw new Exception("api_key cannot be empty. Please setup.");
 	}
 
 
@@ -35,7 +38,7 @@ class XMLSoccer{
 	*/
 	public function __call($name,$params){
 		$data=$this->request($this->buildUrl($name,$params));
-		if(false===($xml = simplexml_load_string($data))) throw new XMLSoccerException("Invalid XML");
+		if(false===($xml = simplexml_load_string($data))) throw new Exception("Invalid XML");
 		if(strstr($xml[0],"To avoid misuse of the service")){
 			switch($name){
 				case "GetLiveScore":
@@ -44,9 +47,9 @@ class XMLSoccer{
 				case "GetHistoricMatchesByLeagueAndSeason":
 				case "GetAllTeams":
 				case "GetAllTeamsByLeagueAndSeason":
-					throw new XMLSoccerException($xml[0],constant("self::TIMEOUT_".$name));
+					throw new Exception($xml[0],constant("self::TIMEOUT_".$name));
 				default:
-					throw new XMLSoccerException($xml[0],self::TIMEOUT_Others);
+					throw new Exception($xml[0],self::TIMEOUT_Others);
 			}
 		}
 		return $xml;
@@ -62,7 +65,7 @@ class XMLSoccer{
 				}
 			}
 			else{
-				throw new XMLSoccerException("Arguments must be an array");
+				throw new Exception("Arguments must be an array");
 			}
 		}
 		return $url;
@@ -82,25 +85,21 @@ class XMLSoccer{
 		$http_code=curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		curl_close($curl);
 
-		if($cerrno!=0) throw new XMLSoccerException($cerror,E_USER_WARNING);
+		if($cerrno!=0) throw new Exception($cerror,E_USER_WARNING);
 
 		if($http_code == 200 ) return $data;
-		throw new XMLSoccerException($http_code .' - '. $data . "\nURL: " . $url);
+		throw new Exception($http_code .' - '. $data . "\nURL: " . $url);
 	}
 
 	public function setRequestIp($ip){
-		if(empty($ip)) throw new XMLSoccerException("IP parameter cannot be empty",E_USER_WARNING);
+		if(empty($ip)) throw new Exception("IP parameter cannot be empty",E_USER_WARNING);
 		$this->request_ip=$ip;
 	}
 
 	public function setServiceUrl($service_url){
-		if(empty($service_url)) throw new XMLSoccerException("service_url parameter cannot be empty",E_USER_WARNING);
+		if(empty($service_url)) throw new Exception("service_url parameter cannot be empty",E_USER_WARNING);
 		$this->service_url=$service_url;
 	}
 
 
 }
-class XMLSoccerException extends Exception{
-
-}
-?>
