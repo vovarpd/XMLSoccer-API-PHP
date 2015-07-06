@@ -31,19 +31,22 @@ class Client extends Component {
 	const TIMEOUT_Others = 300;
 	const TIMEOUT_CURL = 30;
 
-	public function  init( $api_key = "" ) {
-		$this->request_ip = gethostbyname( gethostname() );
-		if ( empty( $this->service_url ) ) {
-			throw new Exception( "service_url cannot be empty. Please setup" );
+	/**
+	 * Initialize component
+	 *
+	 * @throws Exception
+	 */
+	public function init() {
+		if (empty($this->request_ip)) {
+			$this->request_ip = gethostbyname( gethostname() );
 		}
-		if ( ! empty( $api_key ) ) {
-			$this->api_key = $api_key;
+		if ( empty( $this->service_url ) ) {
+			throw new Exception( "service_url cannot be empty. Please configure." );
 		}
 		if ( empty( $this->api_key ) ) {
-			throw new Exception( "api_key cannot be empty. Please setup." );
+			throw new Exception( "api_key cannot be empty. Please configure." );
 		}
 	}
-
 
 	/**
 	 *	list available methods with params.
@@ -125,8 +128,10 @@ class Client extends Component {
 		throw new Exception( $http_code . ' - ' . $data . "\nURL: " . $url );
 	}
 
-	public function setRequestIp($ip){
-		if(empty($ip)) throw new Exception("IP parameter cannot be empty",E_USER_WARNING);
-		$this->request_ip=$ip;
+	public function setRequestIp( $ip ) {
+		if ( empty( $ip ) ) {
+			throw new Exception( "IP parameter cannot be empty.", E_USER_WARNING );
+		}
+		$this->request_ip = $ip;
 	}
 }
