@@ -1,0 +1,33 @@
+{
+  "name": "drsdre/yii2-xmlsoccer-client",
+  "description": "XML Soccer Client Extension for Yii 2",
+  "keywords": ["yii2", "XMLSoccer", "extension", "soap", "consumer", "live football scores"],
+  "homepage": "https://github.com/drsdre/yii2-xmlsoccer-client",
+  "type": "yii2-extension",
+  "license": "BSD-3-Clause",
+  "support": {
+    "issues": "https://github.com/drsdre/yii2-xmlsoccer-client/issues?state=open",
+    "source": "https://github.com/drsdre/yii2-xmlsoccer-client"
+  },
+  "authors": [
+    {
+      "name": "Andre Schuurman",
+      "email": "andre.schuurman+yii2-xmlsoccer-client@gmail.com"
+    },
+    {
+      "name": "Volodymyr Chukh",
+      "email": "vova@promo.lviv.ua"
+    }
+
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "ext-soap": "*",
+    "yiisoft/yii2": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "drsdre\\xml-soccer\\": ""
+    }
+  }
+}
