@@ -63,7 +63,7 @@ If you have try a free demo feed, use some like this:
 	try{
 		$soccer=new XMLSoccer("your_api_key");
 		$soccer->setServiceUrl("http://www.xmlsoccer.com/FootballDataDemo.asmx");
-		$fixtures=$soccer->GetFixturesByDateIntervalAndLeague(array("league"=>3,"startDateString"=>"2014-08-01 00:00","endDateString"=>"2014-09-30 00:00"));
+		$result=$soccer->GetFixturesByDateIntervalAndLeague(array("league"=>3,"startDateString"=>"2014-08-01 00:00","endDateString"=>"2014-09-30 00:00"));
 		var_dump($result);
 	}
 	catch(XMLSoccerException $e){
