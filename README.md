@@ -57,7 +57,7 @@ If your server has multiple IP, then you can set any available IP for your reque
 		echo "XMLSoccerException: ".$e->getMessage();
 	}
 
-If you have try a free demo feed, use php code like this:
+If you want try a free demo feed, use php code like this:
 ------------------------------------------------------
 	include("XMLSoccer.php");
 	try{
