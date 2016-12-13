@@ -3,17 +3,17 @@ XMLSoccer-API-PHP
 
 PHP client for [XMLSoccer](http://XMLSoccer.com) API
 
-Full API Documentation here: [http://xmlsoccer.wikia.com/wiki/API_Documentation](http://xmlsoccer.wikia.com/wiki/API_Documentation)
+Full API Documentation here: [https://xmlsoccer.zendesk.com/hc/en-us](https://xmlsoccer.zendesk.com/hc/en-us)
 
 Requirements:
 =================
 
-PHP5 with CURL, SimpleXML extensions.
+PHP5.5+, CURL, SimpleXML extensions.
 
 How to use:
 =================
 
-Go to [Getting_started](http://xmlsoccer.wikia.com/wiki/Getting_started) and receive API key for access to XMLSoccer.com API.
+Go to [Getting_started](https://xmlsoccer.zendesk.com/hc/en-us/articles/202838171-Getting-started) and receive API key.
 
 Include the XMLSoccer.php file, and call one of available methods.
 	
@@ -23,7 +23,7 @@ Methods Available
 
 Go to [http://www.xmlsoccer.com/FootballData.asmx](http://www.xmlsoccer.com/FootballData.asmx) for more info about methods and parameters.
 
-[Input data formats](http://xmlsoccer.wikia.com/wiki/Input_data_formats)
+[Input data formats](https://xmlsoccer.zendesk.com/hc/en-us/articles/202784172-Input-data-formats)
 
 Examples:
 ==================
@@ -44,7 +44,7 @@ List players for team with id 49
 	}
 
 
-If you server has multiple IP available you can set any IP for request:
+If your server has multiple IP, then you can set any available IP for your request:
 ---------------------------------------------
 	include("XMLSoccer.php");
 	try{
@@ -57,7 +57,7 @@ If you server has multiple IP available you can set any IP for request:
 		echo "XMLSoccerException: ".$e->getMessage();
 	}
 
-If you have try a free demo feed, use some like this:
+If you have try a free demo feed, use php code like this:
 ------------------------------------------------------
 	include("XMLSoccer.php");
 	try{
@@ -70,6 +70,9 @@ If you have try a free demo feed, use some like this:
 		echo "XMLSoccerException: ".$e->getMessage();
 	}
 
+If your connection is very slow then you can set curl timeout using this method:
+-----------------------------------------------------------
+    $soccer->setTimeout(60);
 
 
 That's all!
